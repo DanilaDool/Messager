@@ -4,7 +4,7 @@
   </div>
   <div class="user-avatars-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
     <% @users.each do |user| %>
-      <% if user != current_user %>
+      <% if user != current_user %> <!-- Проверка, что это не текущий пользователь -->
         <div class="users-list-item">
           <div class="user-image-div user-image-div-small" style="margin: 10px;">
             <% if user.avatar? %>
@@ -14,15 +14,17 @@
             <% end %>
             <p><%= user.name %></p>
             <% if current_user.friends.include?(user) %>
-              <span class="text-success">✓</span>
-            <% elsif current_user.sent_friend_requests.exists?(receiver: user) %>
-              <% if current_user.received_friend_requests.exists?(sender: user, accepted: true) %>
-                <span class="text-success">✓</span>
-              <% else %>
+              <% if current_user.pending_friend_requests.include?(user) %>
                 <span class="text-info">Запрос отправлен</span>
+              <% else %>
+                <span class="text-success">✓</span> <!-- Галочка, которая будет отображаться, если пользователь является вашим другом -->
               <% end %>
             <% else %>
-              <%= button_to "Подружиться", friendships_path(user_id: user.id), method: :post, class: "btn btn-dark btn-sm" %>
+              <% if current_user.pending_friend_requests.include?(user) %>
+                <span class="text-info">Запрос отправлен</span>
+              <% else %>
+                <%= button_to "Подружиться", friendships_path(user_id: user.id), method: :post, class: "btn btn-dark btn-sm" %>
+              <% end %>
             <% end %>
           </div>
         </div>
