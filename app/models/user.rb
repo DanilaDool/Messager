@@ -8,7 +8,11 @@ class User < ApplicationRecord
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
+  has_many :friendships
+  has_many :friends, through: :friendships
 
-
+    def accepted_friends
+      self.friends.joins(:friendships).where(friendships: { status: "accepted" })
+    end
 
 end
