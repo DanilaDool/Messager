@@ -1,0 +1,11 @@
+<h1>Друзья пользователя <%= @user.name %></h1>
+
+<% if @friends.any? %>
+  <ul>
+    <% @friends.each do |friend| %>
+      <li><%= friend.friend.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>У вас пока нет друзей.</p>
+<% end %>

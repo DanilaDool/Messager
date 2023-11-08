@@ -2,7 +2,7 @@
 class FriendshipsController < ApplicationController
 
   def show
-
+    @users = User.all
   end
 
   def create

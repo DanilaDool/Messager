@@ -1,5 +1,6 @@
 class FriendsController < ApplicationController
   def show
-    # Код для просмотра пользователей
+    @user = current_user
+    @friends = @user.friends
   end
 end

@@ -22,23 +22,32 @@ body {
     border-radius: 5px;
 }
 
-
 .chat-list {
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    align-items: center; /* Центрировать по горизонтали */
+    margin: 0 auto; /* Центрировать по горизонтали */
     max-width: 500px;
 }
 
 .chat {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 20px 0; /* Удалите внешний отступ снизу, чтобы сохранить размер */
     background-color: #b2b7bf;
-    padding: 10px; /* Добавляем внутренний отступ */
-    border-radius: 10px; /* Добавляем скругленные углы для фона */
-    color: #000; /* Черный цвет текста */
-    width: auto; /* Удалите фиксированную ширину */
+    padding: 10px;
+    border-radius: 10px;
+    color: #000;
+    width: 100%; /* Сделайте чат 100% ширины родительского контейнера */
+    transition: background-color 0.3s; /* Добавляем плавное изменение цвета */
+}
+
+.chat:hover {
+    background-color: #d0d6df; /* Измените цвет при наведении */
+}
+
+.chat:active {
+    background-color: #a9afb7; /* Измените цвет при нажатии */
 }
 
 

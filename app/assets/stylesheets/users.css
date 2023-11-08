@@ -84,3 +84,14 @@ footer {
     background-color: #000000;
     color: #fff;
 }
+
+.rounded-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-image-div {
+    text-align: center;
+}
