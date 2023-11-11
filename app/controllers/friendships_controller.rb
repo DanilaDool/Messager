@@ -7,14 +7,27 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    # Код для создания запроса на дружбу
+    @friendship = current_user.friendships.build(friend_id: params[:friend_id], confirmed: false)
+    if @friendship.save
+      flash[:notice] = 'Запрос дружбы отправлен.'
+      redirect_to users_path
+    else
+      flash[:alert] = 'Ошибка отправки запроса дружбы.'
+      redirect_to users_path
+    end
   end
 
   def update
-    # Код для принятия запроса на дружбу
+    @friendship = Friendship.find(params[:id])
+    @friendship.update(confirmed: true)
+    flash[:notice] = 'Дружба подтверждена.'
+    redirect_to current_user
   end
 
   def destroy
-    # Код для отмены дружбы
+    @friendship = Friendship.find(params[:id])
+    @friendship.destroy
+    flash[:notice] = 'Запрос дружбы отклонен.'
+    redirect_to current_user
   end
 end

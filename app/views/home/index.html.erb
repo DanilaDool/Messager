@@ -6,50 +6,50 @@
   </head>
   <body>
 
-  <%# if current_user.friends.any? %>
+  <% if current_user.friends.any? %>
     <div class="header">
       <div class="search-bar">
         <input type="text" placeholder="Найти друга">
       </div>
     </div>
-    <%# current_user.friends.each do |friend| %>
+    <% current_user.friends.each do |friend| %>
       <div class="chat-list">
         <div class="chat">
-          <%# if friend.avatar? %>
-            <%#= image_tag friend.avatar.thumb.url, alt: "#{friend.name}'s аватар", class: "rounded-avatar" %>
-          <%# else %>
+          <% if friend.avatar? %>
+            <%= image_tag friend.avatar.thumb.url, alt: "#{friend.name}'s аватар", class: "rounded-avatar" %>
+          <% else %>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCSiylwVA6PW_GnlrPL-UmN7zPcmtnzPqXSVExvXbpPQ&s" alt="заглушка" class="rounded-avatar" height="100px" width="100px">
-          <%# end %>
+          <% end %>
           <div class="chat-info">
-<!--            <h3><%#= friend.name %></h3>-->
+            <h3><%= friend.name %></h3>
             <p>Последнее сообщение в чате</p>
           </div>
         </div>
       </div>
-    <%# end %>
-  <%# else %>
-<!--    <div class="nocurrent">-->
-<!--      <div class="text-center" style="height: 100vh;">-->
-<!--        <h3 class="my-auto">У вас пока нету друзей :(</h3>-->
-<!--      </div>-->
-<!--    </div>-->
-  <%# end %>
+    <% end %>
+  <% else %>
+    <div class="nocurrent">
+      <div class="text-center" style="height: 100vh;">
+        <h3 class="my-auto">У вас пока нету друзей :(</h3>
+      </div>
+    </div>
+  <% end %>
 
   <!-- Пользователи, которым была отправлена заявка на дружбу -->
-  <%# current_user.pending_friend_requests.each do |request| %>
-<!--    <div class="friend-request">-->
-<!--      <h3><%#= request.user.name %></h3>-->
-<!--      <button class="confirm-button">Подтвердить</button>-->
-<!--      <button class="reject-button">Отказать</button>-->
-<!--    </div>-->
-  <%# end %>
+  <% current_user.pending_friend_requests.each do |request| %>
+    <div class="friend-request">
+      <h3><%= request.user.name %></h3>
+      <button class="confirm-button">Подтвердить</button>
+      <button class="reject-button">Отказать</button>
+    </div>
+  <% end %>
   </body>
   </html>
 
 <% else %>
-<!--  <div class="nocurrent">-->
-<!--    <div class="text-center" style="height: 100vh;">-->
-<!--      <h3 class="my-auto">Вы не зарегистрированы</h3>-->
-<!--    </div>-->
-<!--  </div>-->
+  <div class="nocurrent">
+    <div class="text-center" style="height: 100vh;">
+      <h3 class="my-auto">Вы не зарегистрированы</h3>
+    </div>
+  </div>
 <% end %>
